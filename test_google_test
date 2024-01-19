@@ -2,25 +2,26 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 import pytest
 
-driver= None
-"""two methods created"""
-@pytest.fixture(scope='module')
-def init_driver():
+drive =None
+"""create method"""
+
+def setup_module(module):
     global driver
-print("________________________setup_______________")
+
     driver=webdriver.Chrome(ChromeDriverManager().install())
     driver.implicitly_wait(5)
     driver.delete_all_cookies()
-    driver.get("https://google.com")
-    yield
-print("----------------------tear-------------------")
+    driver.get("https://google.com
+
+
+def teardown_module(module):
     driver.quit()
 
     """create test cases"""
 
-def test_google_title(init_driver):
+def test_google_title():
     assert driver.title == "Google"
-def test_google_url(init_driver):
+def test_google_url():
     assert driver.url == "google.com"
 
 
