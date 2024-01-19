@@ -1,0 +1,37 @@
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+import time
+"""create function"""
+
+def select_values(options_list,value):
+    """for all drop down selection we are using if condition"""
+    if not value[0]=='all':
+
+        for ele in drop_list:
+         print(ele.text)
+        for k in range(len(value)):
+            if ele.text == value[k]:
+             ele.click()
+             break
+    else:
+         try:
+          for ele in options_list:
+             ele.click()
+         except Exception as e:
+         print(e)
+
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+driver.implicitly_wait(10)
+driver.get("https://www.jqueryscript.net/demo/Drop-Down-Combo-Tree/")
+driver.find_element(By.ID, "justAnInputBox").click()
+time.sleep(2)
+drop_list = driver.find_elements(By.CSS_SELECTOR, "span.comboTreeItemTitle")
+values_list=['choice 1','choice 2','choice 3']#multi function
+values_list=['choice 1']#sinfle sel
+values_list=['all']
+
+select_values(drop_list,values_list)
+
