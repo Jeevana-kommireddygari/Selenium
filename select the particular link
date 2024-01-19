@@ -1,0 +1,19 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+import time
+
+driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+driver.implicity_wait(5)
+driver.get("https://www.google.com")
+print(driver.title)
+driver.find_element(By.NAME, 'q').send_keys("naveen automationlabs")
+optlist=driver.find_elements(By.CSS_SELECTOR,"ul")
+print(len(optlist))
+for ele in optlist:
+    if ele.txt=="naveen automationlabs youtube"
+        ele.click()
+        break
+time.sleep(5)
+driver.quit()
